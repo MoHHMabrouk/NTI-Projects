@@ -1,0 +1,228 @@
+#include "hamadaApp.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <windows.h>
+
+
+char userName[4]="NTI";
+char password[4]="1234";
+
+char trials;
+
+flagType passwordFlag=NO_OK;
+flagType userNameFlag=NO_OK;
+selectProgType selec;
+arrayType arraySelec;
+passwordCheckType pass=NOT_VALID;
+
+
+void calc(void)
+{
+    int num1,num2;
+    char op;
+    scanf("%d",&num1);
+    fflush(stdin);
+    scanf("%c",&op);
+
+    if(op=='s')
+    {
+        printf("%d^2=%d",num1,(num1*num1));
+    }
+
+    else
+    {
+        scanf("%d",&num2);
+        switch(op)
+        {
+        case '+':
+            printf("%d+%d=%d",num1,num2,(num1+num2));
+            break;
+
+        case '-':
+            printf("%d-%d=%d",num1,num2,(num1-num2));
+            break;
+
+        case '*':
+            printf("%d*%d=%d",num1,num2,(num1*num2));
+            break;
+
+        case '/':
+            printf("%d/%d=%d",num1,num2,(num1/num2));
+            break;
+        case 'r':
+            printf("%d%%%d=%d",num1,num2,(num1%num2));
+        }
+    }
+    printf("\n====================\n");
+}
+
+
+void decimalToBinary(char num)
+{
+    int arr[8];
+    for(int i=0; i<8; i++)
+    {
+        arr[i]=(num>>i)&1;
+    }
+    for(int i=7; i>=0; i--)
+    {
+        printf("%d  ",arr[i]);
+    }
+}
+
+
+void numReverse(int num)
+{
+    int rem;
+    while(num)
+    {
+        rem=num%10;
+        printf("%d",rem);
+        num=num/10;
+    }
+
+}
+
+void swapNum(int*num1,int*num2)
+{
+    *num1=*num1^*num2;
+    *num2=*num1^*num2;
+    *num1=*num1^*num2;
+}
+
+passwordCheckType hamadaApplogin(void)
+{
+    char userNameLogin[4];
+    char passwordLogin[5];
+
+    while(trials<3)
+    {
+        printf("\n\n\n\t\t\t\t");
+        printf("User Name:");
+        gets(userNameLogin);
+        printf("\t\t\t\t");
+        printf("Password:");
+        gets(passwordLogin);
+        system("cls");
+        if(!strcmp(userName,userNameLogin))
+        {
+            userNameFlag=OK;
+        }
+        if(!strcmp(password,passwordLogin))
+        {
+            passwordFlag=OK;
+        }
+        if(userNameFlag==NO_OK||passwordFlag==NO_OK)
+        {
+            userNameFlag=NO_OK;
+            passwordFlag=NO_OK;
+        }
+        else
+        {
+            return VALID;
+        }
+        trials++;
+    }
+    return NOT_VALID;
+}
+
+
+void hamadaAppRunnable(void)
+{
+    pass=hamadaApplogin();
+    int number;
+    int number1;
+    int counter=0;
+    int array[10];
+    if(pass==VALID)
+    {
+
+        while(1)
+        {
+            printf("\n\n\n\t\t\t\t");
+            printf("Please select below:\n\t\t\t\t1-Calc.\n\t\t\t\t2-Decimal to binary.\n\t\t\t\t3-Reverse.\n\t\t\t\t4-Swap.\n\t\t\t\t5-Array.\n");
+            printf("\t\t\t\t");
+            scanf("%d",&selec);
+            system("cls");
+            switch(selec)
+            {
+            case CALC:
+                calc();
+                break;
+
+            case DTOB:
+                printf("Please Enter Number:");
+                scanf("%d",&number);
+                decimalToBinary(number);
+                break;
+
+
+            case REVERSE:
+                printf("Please Enter Number:");
+                scanf("%d",&number);
+                numReverse(number);
+                break;
+
+
+            case SWAP:
+                printf("Please Enter Number1:");
+                scanf("%d",&number);
+                printf("Please Enter Number2:");
+                scanf("%d",&number1);
+                swapNum(&number1,&number);
+                printf("Number1:%d\n",number);
+                printf("Number2:%d",number1);
+                break;
+
+            case ARRAY:
+                for(counter=0; counter<5; counter++)
+                {
+                    printf("arr[%d]=",counter);
+                    scanf("%d",&array[counter]);
+                }
+                system("cls");
+                printf("\n\n\n\t\t\t\t");
+                printf("Please Select:\n\t\t\t\t1-sort array.\n\t\t\t\t3-Max.\n\t\t\t\t4-Print.\n");
+                printf("\t\t\t\t");
+                scanf("%d",&arraySelec);
+                system("cls");
+                if(arraySelec==SORT)
+                {
+                    arrayBubbleSort(array,5);
+                    for(counter=0; counter<5; counter++)
+                    {
+                        printf("arr[%d]=%d\n",counter,array[counter]);
+                    }
+
+                }
+                else if(arraySelec==AVG)
+                {
+                    printf("Avarage=%d",arrayAvg(array,5));
+                }
+                else if(arraySelec==LARGEST)
+                {
+                    printf("%d",arrayMaxNum(array,5));
+                }
+                else if(arraySelec==PRINT)
+                {
+                    for(counter=0; counter<5; counter++)
+                    {
+                        printf("arr[%d]=%d\n",counter,array[counter]);
+                    }
+                }
+                break;
+            }
+            Sleep(2000);
+            system("cls");
+        }
+
+    }
+    else
+    {
+        printf("\n\n\n\t\t\t\t");
+        printf("Sorry wrong user name or password\n\n\n\n\n\n");
+    }
+
+}
+

@@ -1,0 +1,14 @@
+typedef enum
+{
+    NO_OK,
+    OK
+}flagType;
+
+
+typedef enum
+{
+    CALC,
+    DTOB,
+    REVERSE,
+    SWAP
+}

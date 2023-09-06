@@ -1,0 +1,35 @@
+# depslib dependency file v1.0
+1693641499 source:d:\embedded\nti\embedded c\main\test.c
+
+1693990450 source:d:\embedded\nti\embedded c\main\main.c
+	<stdio.h>
+	<stdlib.h>
+	"test.h"
+	"dataTypesSizes.h"
+	"studentDatabase.h"
+	<string.h>
+	<windows.h>
+
+1693641663 d:\embedded\nti\embedded c\main\test.h
+
+1693641919 d:\embedded\nti\embedded c\main\datatypessizes.h
+
+1693645573 source:d:\embedded\nti\embedded c\main\datatypessizes.c
+
+1693993184 source:d:\embedded\nti\embedded c\main\array.c
+
+1693993384 source:d:\embedded\nti\embedded c\main\hamadaapp.c
+	"hamadaApp.h"
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<windows.h>
+
+1693988903 d:\embedded\nti\embedded c\main\hamadaapp.h
+
+1693825171 source:d:\embedded\nti\embedded c\main\studentdatabase.c
+	"studentDatabase.h"
+	<stdio.h>
+
+1693826643 d:\embedded\nti\embedded c\main\studentdatabase.h
+

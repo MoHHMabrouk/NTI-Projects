@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "test.h"
+#include "dataTypesSizes.h"
+#include "studentDatabase.h"
+#include <string.h>
+#include <windows.h>
+#define Hamada main
+
+static int x=1;
+
+void printVar(void)
+{
+    int x=10;
+    static int y=10;
+
+    x++;
+    y++;
+
+    printf("%d  %d\n",x,y);
+}
+
+
+
+void swapNum1(int num1,int num2)
+{
+    printf("Num1=%d  Num2=%d",num2,num1);
+}
+
+
+int factroial(int number)
+{
+    if(number==0)
+    {
+        return 1;
+    }
+    else
+    {
+        return number*factroial(number-1);
+    }
+}
+
+//function taking 2 parameters
+
+
+
+
+
+int Hamada()
+{
+
+    studentType student;
+    char studentName[21];
+
+    studentInfo(&student);
+    studentDisplay(student);
+
+    printf("%d",sizeof(student));
+
+}
+

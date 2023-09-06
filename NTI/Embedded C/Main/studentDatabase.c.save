@@ -1,0 +1,8 @@
+#include "studentDatabase.h"
+
+typedef struct
+{
+    char [20] name;
+    int id;
+    char mark;
+}studentType;
